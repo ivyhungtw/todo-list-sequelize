@@ -21,8 +21,29 @@ router.get('/register', (req, res) => {
 
 router.post('/register', async (req, res) => {
   const { name, email, password, confirmPassword } = req.body
-  await User.create({ name, email, password })
-  res.redirect('/')
+
+  try {
+    // Create an account if the email has not been used
+    const user = await User.findOne({ where: { email } })
+
+    if (user) {
+      console.log('User already exists')
+      return res.render('register', {
+        name,
+        email,
+        password,
+        confirmPassword,
+      })
+    }
+
+    const salt = await bcrypt.genSalt(10)
+    const hash = await bcrypt.hash(password, salt)
+    await User.create({ name, email, password: hash })
+
+    res.redirect('/')
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 router.get('/logout', (req, res) => {
