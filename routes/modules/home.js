@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
     const todos = await Todo.findAll({
       raw: true,
       nest: true,
+      where: { UserId: req.user.id },
     })
 
     res.render('index', { todos })
