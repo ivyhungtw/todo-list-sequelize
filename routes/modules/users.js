@@ -12,6 +12,7 @@ const bcrypt = require('bcryptjs')
 // Set up routes
 router.get('/login', (req, res) => {
   res.render('login', {
+    error_msg: req.flash('error'),
     email: req.session.email,
     password: req.session.password,
   })
@@ -22,6 +23,7 @@ router.post(
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/users/login',
+    failureFlash: true,
   })
 )
 

@@ -1,8 +1,10 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcryptjs')
+
 const db = require('../models')
 const User = db.User
+
 module.exports = app => {
   app.use(passport.initialize())
   app.use(passport.session())
@@ -21,11 +23,11 @@ module.exports = app => {
           }
 
           // Password should match the email
-          const isMatch = bcrypt.compare(password, user.password)
+          const isMatch = await bcrypt.compare(password, user.password)
 
           if (!isMatch) {
             return done(null, false, {
-              message: 'Email or Password incorrect.',
+              message: 'Incorrect Password',
             })
           }
 
