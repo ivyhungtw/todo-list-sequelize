@@ -26,6 +26,7 @@ After login, a user can:
 - [Node.js v14.15.1](https://nodejs.org/en/)
 - [Express](https://expressjs.com/)
 - [MySQL](https://dev.mysql.com/)
+- [Sequelize](https://sequelize.org/master/index.html)
 
 ## Install Todo List
 
