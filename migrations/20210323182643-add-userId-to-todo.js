@@ -7,11 +7,11 @@ module.exports = {
       allowNull: false,
       reference: {
         model: 'Users',
-        key: 'id',
-      },
+        key: 'id'
+      }
     })
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.removeColumn('Todos', 'UserId')
-  },
+  }
 }

@@ -3,7 +3,6 @@ const express = require('express')
 const router = express.Router()
 
 const db = require('../../models')
-const Todo = db.Todo
 const User = db.User
 
 const passport = require('passport')
@@ -14,7 +13,7 @@ router.get('/login', (req, res) => {
   res.render('login', {
     error_msg: req.flash('error'),
     email: req.session.email,
-    password: req.session.password,
+    password: req.session.password
   })
 })
 
@@ -23,7 +22,7 @@ router.post(
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/users/login',
-    failureFlash: true,
+    failureFlash: true
   })
 )
 
@@ -33,7 +32,7 @@ router.get('/register', (req, res) => {
 
 router.post('/register', async (req, res) => {
   const { name, email, password, confirmPassword } = req.body
-  const emailRule = /^\w+((-\w+)|(\.\w+)|(\+\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/
+  const emailRule = /^\w+((-\w+)|(\.\w+)|(\+\w+))*@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/
   const errors = []
   // Before creating an account,
   // make sure all the required fields are correct
@@ -52,7 +51,7 @@ router.post('/register', async (req, res) => {
       email,
       password,
       confirmPassword,
-      errors,
+      errors
     })
   }
 

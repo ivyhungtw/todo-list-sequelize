@@ -15,11 +15,11 @@ module.exports = (sequelize, DataTypes) => {
   Todo.init(
     {
       name: DataTypes.STRING,
-      isDone: DataTypes.BOOLEAN,
+      isDone: DataTypes.BOOLEAN
     },
     {
       sequelize,
-      modelName: 'Todo',
+      modelName: 'Todo'
     }
   )
   return Todo

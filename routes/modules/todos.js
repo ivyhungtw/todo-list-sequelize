@@ -4,7 +4,6 @@ const router = express.Router()
 
 const db = require('../../models')
 const Todo = db.Todo
-const User = db.User
 
 // Set up routes
 router.get('/new', async (req, res) => {
@@ -46,7 +45,7 @@ router.put('/:id', async (req, res) => {
     const id = req.params.id
     const { name, isDone } = req.body
 
-    let todo = await Todo.findOne({ where: { id, UserId } })
+    const todo = await Todo.findOne({ where: { id, UserId } })
     todo.name = name
     todo.isDone = isDone === 'on'
     await todo.save()

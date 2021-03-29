@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const SEED_USER = {
   name: 'root',
   email: 'root@example.com',
-  password: '12345678',
+  password: '12345678'
 }
 
 module.exports = {
@@ -21,8 +21,8 @@ module.exports = {
             null
           ),
           createdAt: new Date(),
-          updatedAt: new Date(),
-        },
+          updatedAt: new Date()
+        }
       ],
       {}
     )
@@ -33,7 +33,7 @@ module.exports = {
         name: `name-${i}`,
         UserId: userId,
         createdAt: new Date(),
-        updatedAt: new Date(),
+        updatedAt: new Date()
       })),
       {}
     )
@@ -43,5 +43,5 @@ module.exports = {
     await queryInterface
       .bulkDelete('Todos', null, {})
       .then(() => queryInterface.bulkDelete('Users', null, {}))
-  },
+  }
 }

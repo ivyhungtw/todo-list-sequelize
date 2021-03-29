@@ -19,7 +19,7 @@ module.exports = app => {
 
           if (!user) {
             return done(null, false, {
-              message: 'That email is not registered!',
+              message: 'That email is not registered!'
             })
           }
 
@@ -28,7 +28,7 @@ module.exports = app => {
 
           if (!isMatch) {
             return done(null, false, {
-              message: 'Incorrect Password',
+              message: 'Incorrect Password'
             })
           }
 
@@ -46,7 +46,7 @@ module.exports = app => {
         clientID: process.env.FACEBOOK_ID,
         clientSecret: process.env.FACEBOOK_SECRET,
         callbackURL: process.env.FACEBOOK_CALLBACK,
-        profileFields: ['email', 'displayName'],
+        profileFields: ['email', 'displayName']
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
@@ -56,14 +56,13 @@ module.exports = app => {
           if (user) return done(null, user)
 
           const randomPassword = Math.random().toString(36).slice(-8)
-          bcrypt
 
           const salt = await bcrypt.genSalt(10)
           const hash = await bcrypt.hash(randomPassword, salt)
           await User.create({
             name,
             email,
-            password: hash,
+            password: hash
           })
 
           return done(null, user)

@@ -4,7 +4,6 @@ const router = express.Router()
 
 const db = require('../../models')
 const Todo = db.Todo
-const User = db.User
 
 // Set up routes of home page
 router.get('/', async (req, res) => {
@@ -12,7 +11,7 @@ router.get('/', async (req, res) => {
     const todos = await Todo.findAll({
       raw: true,
       nest: true,
-      where: { UserId: req.user.id },
+      where: { UserId: req.user.id }
     })
 
     res.render('index', { todos })
